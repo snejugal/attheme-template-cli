@@ -5,6 +5,7 @@ parserOptions:
   ecmaFeatures:
     experimentalObjectRestSpread: true
 rules:
+  eqeqeq: warn
   for-direction: error
   getter-return: error
   no-compare-neg-zero: warn
@@ -189,6 +190,9 @@ rules:
       blankLine: always
       next: case
     - prev: switch
+      blankLine: never
+      next: case
+    - prev: case
       blankLine: never
       next: case
 

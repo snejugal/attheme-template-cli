@@ -19,5 +19,9 @@
   "homepage": "https://github.com/snejugal/attheme-template-cli#readme",
   "bin": {
     "attheme-template": "./index.js"
+  },
+  "dependencies": {
+    "attheme-js": "^1.1.1",
+    "colors": "^1.2.1"
   }
 }

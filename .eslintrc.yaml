@@ -1,3 +1,6 @@
 extends: ./eslint-config.yaml
 env:
   node: true
+rules:
+  no-console: off
+  no-process-exit: off
