@@ -1,0 +1,23 @@
+{
+  "name": "attheme-template-cli",
+  "version": "0.1.0",
+  "description": "A CLI to easily create templates for .attheme's and use them.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snejugal/attheme-template-cli.git"
+  },
+  "keywords": [
+    "attheme",
+    "cli"
+  ],
+  "author": "SnejUgal <contact@snejugal.ru> (snejugal.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/snejugal/attheme-template-cli/issues"
+  },
+  "homepage": "https://github.com/snejugal/attheme-template-cli#readme",
+  "bin": {
+    "attheme-template": "./index.js"
+  }
+}
