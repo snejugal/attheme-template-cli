@@ -14,6 +14,10 @@ if (args.length === 0) {
 
 switch (args[0].toLowerCase()) {
   case `create`:
+    if (!args[1]) {
+      console.log(localization.en.createActionCompletion());
+      process.exit(1);
+    }
     switch (args[1].toLowerCase()) {
       case `template`:
         if (
@@ -22,6 +26,7 @@ switch (args[0].toLowerCase()) {
           args[3].toLowerCase() !== `using`
         ) {
           console.log(localization.en.wrongCreateTemplateSyntax());
+          process.exit(1);
         }
 
         createTemplate({
@@ -37,6 +42,7 @@ switch (args[0].toLowerCase()) {
           args[3].toLowerCase() !== `using`
         ) {
           console.log(localization.en.wrongCreateThemeSyntax());
+          process.exit(1);
         }
 
         createTheme({
@@ -49,8 +55,10 @@ switch (args[0].toLowerCase()) {
   case `help`:
   case ``:
     console.log(localization.en.help());
+    process.exit(0);
 
     break;
   default:
     console.log(localization.en.unknownAction(args[0]));
+    process.exit(1);
 }
