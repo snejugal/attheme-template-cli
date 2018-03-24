@@ -76,7 +76,6 @@ const createTemplate = async (args) => {
     }
   } catch (error) {
     console.log(localization.en.themeDoesNotExist(finalThemePath));
-    console.log(error);
     process.exit(1);
   }
 };
