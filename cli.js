@@ -60,6 +60,11 @@ switch (args[0].toLowerCase()) {
           savePath: args[2],
           templatePath: args[4],
         });
+
+        break;
+      default:
+        console.log(localization.en.createActionCompletion());
+        process.exit(1);
     }
 
     break;
