@@ -64,7 +64,17 @@ const createTemplate = async (args) => {
       }
     }
 
-    const stringified = JSON.stringify(reversed, null, 2);
+    const template = {
+      template: reversed,
+    };
+
+    if (Attheme.IMAGE_KEY in theme) {
+      const imageBuffer = Buffer.from(theme[Attheme.IMAGE_KEY], `binary`);
+
+      template.image = imageBuffer.toString(`base64`);
+    }
+
+    const stringified = JSON.stringify(template, null, 2);
 
     try {
       await fs.writeFile(finalSavePath, stringified, `utf8`);
