@@ -29,7 +29,24 @@ const createTheme = async (args) => {
       const variables = template[color];
 
       if (!color.startsWith(`#`)) {
-        color = await ask(localization.en.keywordReplace(color));
+        let valid = false;
+
+        while (!valid) {
+          const userColor = await ask(localization.en.keywordReplace(color));
+
+          try {
+            const { alpha, red, green, blue } = Color.parse(userColor);
+
+            if (isNaN(alpha) || isNaN(red) || isNaN(green) || isNaN(blue)) {
+              throw new Error();
+            }
+
+            valid = true;
+            color = userColor;
+          } catch (error) {
+            console.log(localization.en.invalidColor());
+          }
+        }
       }
 
       color = Color.parse(color);
@@ -57,7 +74,6 @@ const createTheme = async (args) => {
     }
   } catch (error) {
     console.log(localization.en.templateDoesNotExist(finalTemplatePath));
-    console.log(error);
     process.exit(1);
   }
 };

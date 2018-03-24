@@ -54,6 +54,8 @@ ${`create theme`.yellow} ${`"path to new .attheme"`.gray} ${`using`.yellow} ${`"
   templateCreationSuccess: (filePath) => `\n${`Successfully saved the template in`.green} ${filePath.cyan}${`.`.green}`,
 
   themeCreationSuccess: (filePath) => `\n${`Successfully saved the theme in`.green} ${filePath.cyan}${`.`.green}`,
+
+  invalidColor: () => `You entered an invalid color. Please enter it once more.`.red,
 };
 
 module.exports = {
