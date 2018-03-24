@@ -1,19 +1,9 @@
 const path = require(`path`);
 const Attheme = require(`attheme-js`);
 const fs = require(`promise-fs`);
-const readline = require(`readline`);
 const Color = require(`./color`);
 
 const localization = require(`./localization`);
-
-const rl = readline.createInterface(process.stdin, process.stdout);
-const ask = (question) => new Promise((resolve) => {
-  question += ` `;
-
-  rl.question(question, (answer) => {
-    resolve(answer);
-  });
-});
 
 const colorVariablesPairs = (theme) => {
   const reversed = {};
@@ -55,7 +45,7 @@ const createTemplate = async (args) => {
     for (const color in reversed) {
       const colorName = Color.name(Color.parse(color));
       const answer = (await ask(
-        localization.en.templateCreationQuestion(color, colorName),
+        localization.en.colorReplace(color, colorName),
       )).trim();
 
       if (answer !== ``) {

@@ -1,3 +1,6 @@
+const readline = require(`readline`);
+const rl = readline.createInterface(process.stdin, process.stdout);
+
 const createTheme = require(`./create-theme`);
 const createTemplate = require(`./create-template`);
 
@@ -11,6 +14,14 @@ require(`colors`);
 if (args.length === 0) {
   args.push(``);
 }
+
+global.ask = (question) => new Promise((resolve) => {
+  question += ` `;
+
+  rl.question(question, (answer) => {
+    resolve(answer);
+  });
+});
 
 switch (args[0].toLowerCase()) {
   case `create`:

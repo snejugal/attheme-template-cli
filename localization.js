@@ -33,13 +33,15 @@ ${`create theme`.yellow} ${`"path to new .attheme"`.gray} ${`using`.yellow} ${`"
 
   createActionCompletion: () => `${`The`.red} ${`create`.yellow} ${`action must follow either`.red} ${`theme`.yellow} ${`or`.red} ${`template`.yellow} ${`keyword.`.red}`,
 
-  themeDoesNotExist: (filePath) => `${`I couldn't read the file placed in`}.red ${filePath.blue}${`. Are you sure it exists?`.red}`,
+  themeDoesNotExist: (filePath) => `${`I couldn't read the theme placed in`.red} ${filePath.cyan}${`. Are you sure it exists?`.red}`,
 
-  saveError: (filePath) => `\n${`Oops, I couldn't save the file in`.red} ${filePath.blue}. ${`Are you sure that file is writable?`.red}`,
+  templateDoesNotExist: (filePath) => `${`I couldn't read the template placed in`.red} ${filePath.cyan}${`. Are you sure it exists?`.red}`,
 
-  createTemplateInstruction: () => `Okay, I ask you what keyword you'd like to use instead of a color and you answer. If you leave the field empty, I'll assume you want to leave the color constant. If the answer begins with ${`#`.blue}, I'll replace that color with yours.\n`,
+  saveError: (filePath) => `\n${`Oops, I couldn't save the file in`.red} ${filePath.cyan}. ${`Are you sure that file is writable?`.red}`,
 
-  templateCreationQuestion: (color, colorData) => `${
+  createTemplateInstruction: () => `Okay, I ask you what keyword you'd like to use instead of a color and you answer. If you leave the field empty, I'll assume you want to leave the color constant. If the answer begins with ${`#`.cyan}, I'll replace that color with yours.\n`,
+
+  colorReplace: (color, colorData) => `${
     color[terminalColorsMap[colorData.colorName]]} ${
     `looks like ${
       colorData.isPure ?
@@ -47,7 +49,11 @@ ${`create theme`.yellow} ${`"path to new .attheme"`.gray} ${`using`.yellow} ${`"
         `the ${colorData.shadeName} shade of ${colorData.colorName}`
     }`.gray} →`,
 
-  templateCreationSuccess: (filePath) => `\n${`Successfully saved the template in`.green} ${filePath.blue}${`.`.green}`,
+  keywordReplace: (keyword) => `${keyword.cyan} →`,
+
+  templateCreationSuccess: (filePath) => `\n${`Successfully saved the template in`.green} ${filePath.cyan}${`.`.green}`,
+
+  themeCreationSuccess: (filePath) => `\n${`Successfully saved the theme in`.green} ${filePath.cyan}${`.`.green}`,
 };
 
 module.exports = {

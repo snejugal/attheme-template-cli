@@ -5,3 +5,5 @@ env:
 rules:
   no-console: off
   no-process-exit: off
+globals:
+  ask: Function
