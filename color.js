@@ -1,10 +1,5 @@
 const colors = require(`./colors`);
 
-const ALPHA_START = 1;
-const RED_START = 3;
-const GREEN_START = 5;
-const BLUE_START = 7;
-
 class Color {
   static distance (firstColor, secondColor) {
     const redDistance = (firstColor.red - secondColor.red) ** 2;
@@ -56,11 +51,40 @@ class Color {
   }
 
   static parse (hex) {
-    // Assuming only #aarrggbb are passed
-    const alpha = parseInt(hex.slice(ALPHA_START, RED_START), 16);
-    const red = parseInt(hex.slice(RED_START, GREEN_START), 16);
-    const green = parseInt(hex.slice(GREEN_START, BLUE_START), 16);
-    const blue = parseInt(hex.slice(BLUE_START), 16);
+    let alpha = 255;
+    let red;
+    let green;
+    let blue;
+
+    switch (hex.length) {
+      /* eslint-disable no-magic-numbers */
+      case 9:
+        alpha = parseInt(hex.slice(1, 3), 16);
+        red = parseInt(hex.slice(3, 5), 16);
+        green = parseInt(hex.slice(5, 7), 16);
+        blue = parseInt(hex.slice(7), 16);
+
+        break;
+      case 7:
+        red = parseInt(hex.slice(1, 3), 16);
+        green = parseInt(hex.slice(3, 5), 16);
+        blue = parseInt(hex.slice(5), 16);
+
+        break;
+      case 5:
+        alpha = parseInt(hex.slice(1, 2).repeat(2), 16);
+        red = parseInt(hex.slice(2, 3).repeat(2), 16);
+        green = parseInt(hex.slice(3, 4).repeat(2), 16);
+        blue = parseInt(hex.slice(4).repeat(2), 16);
+
+        break;
+      case 4:
+        red = parseInt(hex.slice(1, 2).repeat(2), 16);
+        green = parseInt(hex.slice(2, 3).repeat(2), 16);
+        blue = parseInt(hex.slice(3).repeat(2), 16);
+
+        break;
+    }
 
     const color = {
       alpha,
@@ -75,7 +99,7 @@ class Color {
 
 for (const color in colors) {
   for (const shade in colors[color]) {
-    colors[color][shade] = Color.parse(`#ff${colors[color][shade]}`);
+    colors[color][shade] = Color.parse(`#${colors[color][shade]}`);
   }
 }
 
